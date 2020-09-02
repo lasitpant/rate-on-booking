@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %} Rateon India{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static "fonts/css/font-awesome.min.css" %}">
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}"/>
+    {% block css %}
+    {% endblock %}
+  </head>
+  <body>
+    <div class="wraper">
+       <header class="header">
+          <a class="logo" href="{% url "home" %}"></a>
+          <nav>
+              <ul>
+               <li><a href="{% url "home" %}" class="{% if "home" == menu %}active{% endif %}">Home</a></li>
+               <li><a href="{% url "about-us" %}" class="{% if "about-us" == menu %}active{% endif %}">About Us</a></li>
+               <li><a href="{% url "services" %}" class="{% if "services" == menu %}active{% endif %}">Services</a>
+               <li><a href="{% url "contacts" %}" class="{% if "contacts" == menu %}active{% endif %}">Contacts</a>
+               {% if user.is_authenticated %}
+               <li><a href="{% url "user-logout" %}">Logout</a>
+               {% endif %}
+             </ul>
+          </nav>
+      </header>
+    </div> 
+    <div class="content_block">
+      <div class="top_title">
+        <div class="text_bar_shadow"></div>
+        <div class="wraper">
+          <h2>{{ head_text }}<span>Rateon India</span></h2>
+          <ul>
+            <li>
+              <p>Our value added services for you..</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="content_block">
+      {% block body %}
+      {% endblock %}
+    </div>
+    <!-- copyright -->
+    <div class="copyright">
+     <div class="wraper">
+      <p>
+        <span>&copy; Copyright 2014 RateOn Technology</span>All Rights Reserved
+        <a href="{% url "privacy-policy" %}">Privacy Policy</a>
+        <a href="{% url "terms-and-conditions" %}">Terms and Conditions</a>
+      </p>
+      <a class="top" href="#">Back to the top</a>
+     </div>
+    </div>
+    <!-- /copyright -->
+  </body>
+  <script type="text/javascript" src="{% static "js/libs/jquery.min.js" %}"></script>
+  {% block js %}
+  {% endblock %}
+</html>
+
